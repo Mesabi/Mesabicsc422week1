@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package csc422week1petproject;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;  
 
@@ -81,10 +82,10 @@ public class mainLogic {
                System.out.println("Functionality Not Added!");
                 break;  
             case 5:
-               System.out.println("Functionality Not Added!");
+               searchPetString();
                 break;
             case 6:
-               System.out.println("Functionality Not Added!");
+               searchPetInt();
                 break;
             case 7:
                System.out.println("Functionality Not Added!");
@@ -220,6 +221,40 @@ public class mainLogic {
         return Integer.parseInt(in); 
     }
     
+    
+    public void searchPetString(){
+        ArrayList<Pet> tempPetReturn = new ArrayList<Pet>();
+        System.out.println("Input Pet Name!");
+        String search = getInput();
+        if(petLibrary.PetExists(search)){
+            Pet temp = petLibrary.getPet(search);
+            System.out.println("| ID |   NAME   |   AGE| ");
+            header();
+            printPetLine(temp);
+            header();
+        }else{
+            header();
+            System.out.println("No Pet Returned");
+            header();           
+        }
+    }
+        public void searchPetInt() {
+        ArrayList<Pet> tempPetReturn = new ArrayList<Pet>();
+        System.out.println("Input Pet Age!");
+        int search = getInt(getInput());
+        if(false){
+            //Pet temp = petLibrary.getPet(search);
+            System.out.println("| ID |   NAME   |   AGE| ");
+            header();
+            //printPetLine(temp);
+            header();
+        }else{
+            header();
+            System.out.println("No Pet Returned");
+            header();           
+        }
+        
+    }
     
     
     

@@ -54,6 +54,8 @@ public class PetDirectory {
         }
         return false;
     } 
+    
+    
     public Pet getPetByID(int fetch){
         return allPets.get(fetch);
     }
@@ -62,7 +64,7 @@ public class PetDirectory {
     {//returns a pet
         for(Pet search : allPets)
         {
-            if(search.getPetName()==searchPet)
+            if(search.getPetName().equals(searchPet))
             {
                 return search;
             }
