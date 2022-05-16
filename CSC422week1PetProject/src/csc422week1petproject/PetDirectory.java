@@ -56,9 +56,79 @@ public class PetDirectory {
     } 
     
     
+    
+    public boolean PetExistsAge(int searchPet)
+    {//searches to see if a pet exists.
+        for(Pet search : allPets)
+        {
+            if(search.getPetAge() == searchPet)
+            {
+                return true;
+            }
+        }
+        return false;
+    }     
+    
     public Pet getPetByID(int fetch){
         return allPets.get(fetch);
     }
+    
+    public boolean multipleSameName(String searchPet){
+        int petsByName = 0;
+        for(Pet search : allPets)
+        {
+            if(search.getPetName().equals(searchPet))
+            {
+                petsByName ++;
+            }
+        }
+        if(petsByName > 1){
+            return true;
+        }else{
+            return false;
+        }
+            
+    }
+    public boolean multipleSameAge(int searchPet){
+        int petsByName = 0;
+        for(Pet search : allPets)
+        {
+            if(search.getPetAge() == searchPet)
+            {
+                petsByName ++;
+            }
+        }
+        if(petsByName > 1){
+            return true;
+        }else{
+            return false;
+        }
+            
+    }
+    
+    public ArrayList<Pet> getPetMultName(String searchPet){
+        ArrayList<Pet> exit = new ArrayList<Pet>();
+        for(Pet search : allPets)
+        {
+            if(search.getPetName().equals(searchPet))
+            {
+                exit.add(search);
+            }
+        }
+        return exit;     
+    }
+     public ArrayList<Pet> getPetMultInt(int searchPet){
+        ArrayList<Pet> exit = new ArrayList<Pet>();
+        for(Pet search : allPets)
+        {
+            if(search.getPetAge() == searchPet)
+            {
+                exit.add(search);
+            }
+        }
+        return exit;     
+    }   
+    
     
     public Pet getPet(String searchPet)
     {//returns a pet

@@ -76,19 +76,21 @@ public class mainLogic {
                 addPet();
                 break;
             case 3:
-               System.out.println("Functionality Not Added!");
-                break;                
+               System.out.println("Each Pet was Forged with Purpose and Intention.");
+               System.out.println("They will not be modified!");
+               int die = 5 / 0;
+               break;                
             case 4:
-               System.out.println("Functionality Not Added!");
+               removePet();
                 break;  
             case 5:
-               searchPetString();
+               handleNameSearch();
                 break;
             case 6:
-               searchPetInt();
+               handleIntSearch();
                 break;
             case 7:
-               System.out.println("Functionality Not Added!");
+                running = false;
                 break;                
             case 8:
                System.out.println("Functionality Not Added!");
@@ -99,6 +101,42 @@ public class mainLogic {
     // code block
 }
     }
+    public void removePet(){
+        
+        Boolean petComplete = false;
+        viewPets();
+        int search = -2;
+         while(!petComplete){
+             try{
+                System.out.println("Please Input a Pet ID to remove, or type -1 to exit!");     
+                search = getInt(getInput());
+                petComplete = true;
+                break;
+            }catch(Exception e){
+               System.out.println("Error, please retry, or type -1 to exit");               
+            }
+            if(search == -1){
+                return;
+            }else{
+                for(Pet iterate : petLibrary.allPets){
+                    if(iterate.getPetID() == search){
+                        Pet temp = petLibrary.getPetByID(search);
+                        petLibrary.allPets.remove(temp);
+                        System.out.println("Pet was Removed");  
+                    }
+                }
+
+                   
+            
+            }
+         }
+    }
+    
+    
+    
+    
+    
+    
     public void addPet(){
         Boolean petComplete = false;
         String name;
@@ -150,6 +188,17 @@ public class mainLogic {
         header();
    
     }
+    public void viewSomePets(ArrayList<Pet> pets){
+        header();
+        System.out.println("| ID |   NAME   |   AGE| ");
+        header();
+        for(int i = 0;i < pets.size(); i++){
+            printPetLine(pets.get(i));
+        }
+        header();
+    } 
+    
+    
     
     public void header(){
         System.out.println("+----------------------+ ");
@@ -193,17 +242,7 @@ public class mainLogic {
     public int evaluateLength(String in){
         return in.length();
     }
-    
-    
-    
-    
-    
-    public void getTest(){
-        System.out.println(getInt(getInput()));
-    }
-    
-    
-    
+
     public String getInput(){
         //shortens all input to < 10 char.
         //God forbid that the Scanner class not be a heaping pile of ----
@@ -221,40 +260,49 @@ public class mainLogic {
         return Integer.parseInt(in); 
     }
     
-    
-    public void searchPetString(){
-        ArrayList<Pet> tempPetReturn = new ArrayList<Pet>();
+    public void handleNameSearch(){
         System.out.println("Input Pet Name!");
         String search = getInput();
-        if(petLibrary.PetExists(search)){
-            Pet temp = petLibrary.getPet(search);
-            System.out.println("| ID |   NAME   |   AGE| ");
-            header();
-            printPetLine(temp);
-            header();
-        }else{
-            header();
-            System.out.println("No Pet Returned");
-            header();           
-        }
-    }
-        public void searchPetInt() {
-        ArrayList<Pet> tempPetReturn = new ArrayList<Pet>();
-        System.out.println("Input Pet Age!");
-        int search = getInt(getInput());
-        if(false){
-            //Pet temp = petLibrary.getPet(search);
-            System.out.println("| ID |   NAME   |   AGE| ");
-            header();
-            //printPetLine(temp);
-            header();
-        }else{
-            header();
-            System.out.println("No Pet Returned");
-            header();           
-        }
+               
         
-    }
+        if(petLibrary.PetExists(search)){
+           viewSomePets(petLibrary.getPetMultName(search));  
+        }else{
+            header();
+            System.out.println("No Pet Returned");
+            header();           
+        }
+        }
+    
+     public void handleIntSearch(){
+        System.out.println("Input Pet Age!");
+        Boolean intIn = false;
+        int search = -1;
+        while(intIn){
+            try{
+        System.out.println(">>");
+                
+                search = getInt(getInput());
+                intIn = true;
+                break;
+            }catch(Exception e){
+                System.out.println("Input an Integer!");
+            }          
+        }                       
+        if(petLibrary.PetExistsAge(search)){
+           viewSomePets(petLibrary.getPetMultInt(search));  
+        }else{
+            header();
+            System.out.println("No Pet Returned");
+            header();           
+        }
+        }       
+       
+    
+    
+    
+    
+
     
     
     
