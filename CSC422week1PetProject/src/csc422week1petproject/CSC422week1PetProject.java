@@ -16,8 +16,10 @@ public class CSC422week1PetProject {
      */
     public static void main(String[] args) {
         System.out.println("booting...");
-        mainLogic petDatabase = new mainLogic();
-        petDatabase.runProgram();
+        FileHandler handle = new FileHandler();
+        handle.getFile();
+        //mainLogic petDatabase = new mainLogic();
+        //petDatabase.runProgram();
     }
     
 }
